@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 //지출 데이터
 struct Expend {
 	char name[30];
@@ -164,10 +163,13 @@ int main(void) {
 		case 2: {                  //지출 목록 출력
 			print(main,food,health,life);
 		}
-		
+		case 9: {
+			printf("프로그램을 종료합니다.");
+			return 0;
 		}
-		system("pause");   // 잠시 멈추고
-		system("cls");     //화면을 지우기
+		}
+		system("pause"); 
+		system("cls");    
 
 	}
 	return 0;
