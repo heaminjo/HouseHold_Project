@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-//지출 데이터
+//두번째 커밋
+
 struct Expend {
 	char name[30];
 	int price;
@@ -10,7 +11,6 @@ struct Expend {
 	Expend* next;
 };
 
-//스택
 struct Stack {
 	Expend* data;
 	Expend* top;
@@ -18,7 +18,6 @@ struct Stack {
 	int money;
 };
 
-//스택 생성
 Stack* create_Stack() {
 	Stack* stack = new Stack;
 	memset(stack, NULL, sizeof(stack));
@@ -27,8 +26,6 @@ Stack* create_Stack() {
 
 	return stack;
 }
-
-//메인메뉴
 void mainMenu() {
 	printf("\n");
 	printf("=====메인메뉴======\n");
@@ -39,12 +36,11 @@ void mainMenu() {
 	printf("번호 선택:");
 }
 
-//지출 데이터 생성
+//지출 내용 생성
 Expend* push() {
 	char name[30];
 	int price;
 	int category;
-	
 	Expend* ex = new Expend;
 	ex->next = NULL;
 
@@ -67,7 +63,7 @@ Expend* push() {
 	return ex;
 }
 
-//스택 추가
+//메인 스택 추가
 void add(Stack* stack,Expend*ex) {
 	if (stack == 0) {
 		stack->top = ex;
@@ -80,8 +76,6 @@ void add(Stack* stack,Expend*ex) {
 	stack->money += ex->price;
 	stack->count++;
 }
-
-//상세 지출 목록 출력
 void detail_Print(Stack* stack,char category[]) {
 	printf("\n");
 	printf("[%s 목록]\n", category);
@@ -94,8 +88,6 @@ void detail_Print(Stack* stack,char category[]) {
 		top = top->next;
 	}
 }
-
-//지출 목록 통계
 void print(Stack* main, Stack* food, Stack* health, Stack* life) {
 	int select;
 
@@ -146,12 +138,12 @@ int main(void) {
 		scanf_s("%d", &select);
 		switch (select)
 		{
-		case 1: {                //지출 데이터 추가
+		case 1: {                //지출 목록 추가
 			Expend* ex = NULL;
-			ex = push();       //지출 데이터를 생성하는 함수를 호출하여 반환 
-			add(main, ex);     //해당 데이터를 전체 메모리공간 스택에 저장
+			ex = push();
+			add(main, ex);
 
-			if (ex->category == 1) {    //해당 카테고리에 해당하는 스택에 저장
+			if (ex->category == 1) {
 				add(food, ex);
 			}
 			else if (ex->category == 2) {
@@ -162,12 +154,12 @@ int main(void) {
 			}
 			break;
 		}
-		case 2: {                      //통계 출력
+		case 2: {
 			print(main,food,health,life);
 		}
 		}
-		system("pause"); 
-		system("cls");     
+		system("pause");   // 잠시 멈추고
+		system("cls");     //화면을 지우기
 
 	}
 	return 0;
